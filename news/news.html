@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            var a = window.location.href.split("?")[1].split("=")[1];
+            console.log(a);
+            if(a == "x"){
+                $.ajax({
+                    url:"http://localhost:3000/item/list",
+                    type:"GET",
+                    success:function (e) {
+                        var str = "";
+                        for(var i in e){
+                            str +="<h4><a href='news.html?id="+e[i].id+"'>"+e[i].name+"</a></h4>"
+                        }
+                        $(".content").append(str)
+                    }
+                })
+            }else{
+                $.ajax({
+                    url:"http://localhost:3000/item/con1",
+                    type:"POST",
+                    data:{
+                        id:a
+                    },
+                    success:function (e) {
+                        $(".content").append("<h3>"+e[0].content+"</h3>")
+                    }
+                })
+            }
+
+
+        })
+    </script>
+    <style>
+        *{
+            margin: 0;padding: 0;
+        }
+        .box{
+            width: 610px;
+            height: 600px;
+            border: 1px solid #111;
+            margin: 0 auto;
+        }
+        .content{
+            float: right;
+            width: 500px;
+            height: 400px;
+            background: #e2e2e2;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="content">
+
+        </div>
+    </div>
+</body>
+</html>

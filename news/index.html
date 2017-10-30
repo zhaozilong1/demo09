@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            $.ajax({
+                url:"http://localhost:3000/item/list",
+                type:"GET",
+                success:function (e) {
+                    for(var i in e){
+                        $(".news").append("<h4><a href='news.html?id="+e[i].id+"'>"+e[i].name+"</a></h4>")
+                    }
+
+                }
+            })
+        })
+    </script>
+    <style>
+        *{
+            margin: 0;padding: 0;
+        }
+        .box{
+            width: 1200px;
+            height: 600px;
+            border: 1px solid #111;
+            margin: 0 auto;
+        }
+        .box ul{
+            width: 1200px;
+            height: 50px;
+        }
+        .box ul li{
+            width: 300px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            list-style: none;
+            float: left;
+        }
+        .news{
+            width: 100px;
+            height: 300px;
+            border: 1px solid #00B7FF;
+            margin-top: 150px;
+        }
+        .news h4{
+            text-align: center;
+            height: 30px;
+            line-height: 30px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <ul>
+            <li><a href="#">首页</a></li>
+            <li><a href="news.html?id=x">新闻</a></li>
+            <li><a href="#">招聘</a></li>
+            <li><a href="#">看看</a></li>
+        </ul>
+        <div class="news">
+
+        </div>
+    </div>
+</body>
+</html>
