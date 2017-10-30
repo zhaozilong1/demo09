@@ -11,7 +11,6 @@
             if(a == "x"){
                 $.ajax({
                     url:"http://localhost:3000/item/list",
-                    type:"GET",
                     success:function (e) {
                         var str = "";
                         for(var i in e){

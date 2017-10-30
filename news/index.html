@@ -11,8 +11,23 @@
                 type:"GET",
                 success:function (e) {
                     for(var i in e){
-                        $(".news").append("<h4><a href='news.html?id="+e[i].id+"'>"+e[i].name+"</a></h4>")
+                        $(".news").append("<h4><a href='news.html?id="+e[i].id+"'>"+e[i].name+"</a><span data-id='"+e[i].id+"'>X</span></h4>")
                     }
+                    $("span").click(function () {
+
+                        var id = $(this).attr("data-id");
+                        $.ajax({
+                            url:"http://localhost:3000/item/del",
+                            type:"POST",
+                            data:{
+                                id:id
+                            },
+                            success:function(e){
+
+                            }
+                        })
+                        $(this).parent().remove()
+                    })
 
                 }
             })
@@ -51,6 +66,9 @@
             height: 30px;
             line-height: 30px;
             margin-bottom: 5px;
+        }
+        .news h4 span{
+            float: right;
         }
     </style>
 </head>

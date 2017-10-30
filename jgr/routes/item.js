@@ -9,6 +9,14 @@ var connection = mysql.createPool({
 })
 
 /* GET home page. */
+router.post('/del', function(req, res, next) {
+    connection.query("DELETE FROM news where id=" + req.body.id,function (err,rows) {
+        res.header("Access-Control-Allow-Origin","*");
+        if(err) throw err
+        res.send(rows)
+    })
+});
+
 router.get('/list', function(req, res, next) {
     connection.query("SELECT id,name FROM news",function (err,rows) {
         res.header("Access-Control-Allow-Origin","*");
